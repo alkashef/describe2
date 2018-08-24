@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
-from pandas.api.types import *
 from collections import Counter
+
 
 class Describe2:
 
@@ -38,9 +38,8 @@ class Describe2:
         description['No. of Values'] = df.apply(len, axis=0)
         description['No. of Unique Values'] = df.apply(self._unique, axis=0)
         description['No. of NaN'] = description['No. of Values'] - df.count(axis=0)
-        description['NaN Percent'] = description['No. of NaN'] / description['No. of Values']
         description['No. of Zeros'] = df.apply(self._count0, axis=0)
-        description['No. of +ve Value'] = df.apply(self._count_positive, axis=0)
+        description['No. of +ve Values'] = df.apply(self._count_positive, axis=0)
         description['Min'] = df.apply(np.min, axis=0)
         description['Max'] = df.apply(np.max, axis=0)
         description['Mean'] = df.apply(np.mean, axis=0)
@@ -49,8 +48,7 @@ class Describe2:
         description['Mode'] = df.apply(self._mode, axis=0)
         description['Skew'] = df.apply(pd.DataFrame.skew, axis=0)
         description['Kurtosis'] = df.apply(pd.DataFrame.kurtosis, axis=0)
-        description['Outliers 3 Sig'] = df.apply(self._outliers_3sig, axis=0)
-        description['Outliers 3 Sig Percent'] = description['Outliers 3 Sig'] / description['No. of Values']
+        description['No. of 3 Sigma Outliers'] = df.apply(self._outliers_3sig, axis=0)
         return description
 
     def _describe_obj(self, df):
