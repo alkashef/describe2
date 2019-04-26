@@ -2,7 +2,6 @@ import numpy as np
 import pandas as pd
 from collections import Counter
 
-
 class Describe2:
 
     def _unique(self, series):
